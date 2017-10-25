@@ -1,0 +1,41 @@
+﻿<Window x:Class="TestForNice.MainWindow" x:Name="mainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestForNice"
+        mc:Ignorable="d"
+        Title="Тестовое задание для Наис" Height="Auto" Width="750"
+        FontWeight="Bold">
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" Visibility="Visible">
+            <MenuItem Name="menuFile" Header="_Файл">
+                <MenuItem Name="menuFileLoad" Header="_Загрузить" Click="FileLoad_Click"/>
+                <MenuItem Name="menuFileSave" Header="_Сохранить" Click="FileSave_Click"/>
+                <MenuItem Name="menuClose" Header="_Закрыть" Click="Close_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar x:Name="stackPanelMenu" DockPanel.Dock="Top" Height="35">
+            <Button x:Name="btnShowAllEmployee" Content="Показать всех(A)" Click="btnShowAllEmployee_Click"/>
+            <Separator/>
+            <Button x:Name="sortEmployee" Content="Отсортировать по ср. з/п (B)" Click="sortEmployee_Click"/>
+            <Separator/>
+            <Button x:Name="btnShowTop3" Content="Топ 3 по ср. з/п (С)" Click="btnShowTop3_Click"/>
+            <Separator/>
+            <Button x:Name="btnShowLast5" Content="Последние 5 по ср. з/п (D)" Click="btnShowLast5_Click"/>
+            <Separator/>
+        </ToolBar>
+        <DataGrid x:Name="dgEmployees" AutoGenerateColumns="False" ItemsSource="{Binding}" EnableRowVirtualization="False" CanUserAddRows="False" RowEditEnding="dgEmployees_RowEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="№" Width="30"/>
+                <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="Имя" Width="100"/>
+                <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Фамилия" Width="100"/>
+                <DataGridTextColumn x:Name="genderColumn" Binding="{Binding Gender}" Header="Пол" Width="80"/>
+                <DataGridTextColumn x:Name="bDateColumn" Binding="{Binding BDate, StringFormat=dd.MM.yyyy}" Header="Дата рождения" Width="110"/>
+                <DataGridTextColumn x:Name="positionColumn" Binding="{Binding Position}" Header="Должность" Width="100"/>
+                <DataGridTextColumn x:Name="wageRateColumn" Binding="{Binding WageRate}" Header="Ставка" Width="100" />
+                <DataGridTextColumn x:Name="awerageSalaryColumn" Binding="{Binding AverageSalary}" Header="Средняя з/п" Width="100" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
